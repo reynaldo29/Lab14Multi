@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Database2022.Views.PeopleView">
     <ContentPage.Content>
-        <StackLayout>
-            <Entry Placeholder="FirstName" Text="{Binding FirstName}"/>
+        <StackLayout x:Name="viewStackLayout">
+            <Entry Placeholder="FirstName" Text="{Binding FirstName}" />
             <Entry Placeholder="LastName" Text="{Binding LastName}"/>
             <Button Text="Save" Command="{Binding InsertCommand}"/>
             <Entry Placeholder="Filter"  Text="{Binding Filter}" HorizontalOptions="FillAndExpand"/>
@@ -16,6 +16,7 @@
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding FirstName}"></Label>
                                 <Label Text="{Binding LastName}"></Label>
+                                <Button Text="X" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference viewStackLayout}}" CommandParameter="{Binding PersonId}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

@@ -56,5 +56,26 @@ namespace Database2022
         {
             return _context.People.Where(x => x.FirstName.Contains(text) || x.LastName.Contains(text)).ToList();
         }
+
+        public Person GetById(int id)
+        {
+            return _context.People.Where(x => x.PersonId == id).FirstOrDefault();
+        }
+        public bool DeletePerson(int id)
+        {
+            try
+            {
+                var model = GetById(id);
+                _context.Remove(model);
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
+
+        }
     }
 }

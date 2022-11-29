@@ -50,6 +50,7 @@ namespace Database2022.ViewModels
 
         public ICommand SearchCommand { get; set; }
         public ICommand InsertCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
         public ViewModelPeople()
         {
 
@@ -66,6 +67,13 @@ namespace Database2022.ViewModels
                 PersonService service = new PersonService();
                 int newPersonId = service.Get().Count + 1;
                 service.Create(new Person { FirstName = FirstName, LastName = LastName, PersonId = newPersonId });
+            });
+
+            DeleteCommand = new Command<int>(execute: (int parameter) =>
+            {
+                PersonService service = new PersonService();
+                int ide = parameter;
+                service.DeletePerson(ide);
             });
         }
 
