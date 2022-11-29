@@ -11,7 +11,7 @@ namespace Database2022
 
         public PersonService() => _context = App.GetContext();
 
-
+        
         public bool Create(Person item)
         {
             try
@@ -54,10 +54,7 @@ namespace Database2022
 
         public List<Person> GetByText(string text)
         {
-            return _context.People.Where(x => x.FirstName.Contains(text)).ToList();
+            return _context.People.Where(x => x.FirstName.Contains(text) || x.LastName.Contains(text)).ToList();
         }
-
-
-
     }
 }

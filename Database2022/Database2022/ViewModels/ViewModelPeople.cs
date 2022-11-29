@@ -24,6 +24,22 @@ namespace Database2022.ViewModels
             set { SetValue(ref this.filter, value); }
         }
 
+
+        private string firstName;
+        public string FirstName
+        {
+            get { return firstName; }
+            set { SetValue(ref this.firstName, value); }
+        }
+        private string lastName;
+        public string LastName
+        {
+            get { return lastName; }
+            set { SetValue(ref this.lastName, value); }
+        }
+
+
+
         private List<Person> people;
         public List<Person> People
         {
@@ -33,22 +49,24 @@ namespace Database2022.ViewModels
 
 
         public ICommand SearchCommand { get; set; }
-
+        public ICommand InsertCommand { get; set; }
         public ViewModelPeople()
         {
 
             SearchCommand = new Command(() =>
             {
                 PersonService service = new PersonService();
-                People = service.GetByText(Filter);
-                if (People.Count > 3)
-                    Color = "Red";
-                else
-                    Color = "Blue";
+                People = service.Get();
+              
 
             });
 
-
+            InsertCommand = new Command(() =>
+            {
+                PersonService service = new PersonService();
+                int newPersonId = service.Get().Count + 1;
+                service.Create(new Person { FirstName = FirstName, LastName = LastName, PersonId = newPersonId });
+            });
         }
 
 
