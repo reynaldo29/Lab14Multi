@@ -61,6 +61,22 @@ namespace Database2022
         {
             return _context.People.Where(x => x.PersonId == id).FirstOrDefault();
         }
+
+        public bool UpdatePerson(Person person, int id)
+        {
+            try
+            {
+                var model = GetById(id);
+                model.LastName = person.LastName;
+                model.FirstName = person.FirstName;
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public bool DeletePerson(int id)
         {
             try

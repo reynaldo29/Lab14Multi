@@ -4,11 +4,11 @@
              x:Class="Database2022.Views.PeopleView">
     <ContentPage.Content>
         <StackLayout x:Name="viewStackLayout">
+            
             <Entry Placeholder="FirstName" Text="{Binding FirstName}" />
             <Entry Placeholder="LastName" Text="{Binding LastName}"/>
             <Button Text="Save" Command="{Binding InsertCommand}"/>
-            <Entry Placeholder="Filter"  Text="{Binding Filter}" HorizontalOptions="FillAndExpand"/>
-            <Button Text="ShowByText" Command="{Binding SearchCommand}" />
+            <!--<Button Text="ShowByText" Command="{Binding SearchCommand}" />-->
             <ListView x:Name="lvPeople" ItemsSource="{Binding People}" BackgroundColor="{Binding Color}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -16,6 +16,8 @@
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding FirstName}"></Label>
                                 <Label Text="{Binding LastName}"></Label>
+                                <Button Text="Edit" Command="{Binding BindingContext.SelectOneCommand, Source={x:Reference viewStackLayout}}" CommandParameter="{Binding PersonId}"/>
+                                
                                 <Button Text="X" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference viewStackLayout}}" CommandParameter="{Binding PersonId}"/>
                             </StackLayout>
                         </ViewCell>
