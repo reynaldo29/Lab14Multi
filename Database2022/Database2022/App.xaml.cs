@@ -11,7 +11,7 @@ namespace Database2022
         {
             InitializeComponent();
             GetContext().Database.EnsureCreated();
-            MainPage = new PeopleView();
+            MainPage = new EstudianteView();
         }
 
 

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Database2022.Views.EstudianteView">
+    <ContentPage.Content>
+        <StackLayout x:Name="viewStackLayout">
+
+            <Entry Placeholder="Nombre" Text="{Binding Nombre}" />
+            <Entry Placeholder="Apellido" Text="{Binding Apellido}"/>
+            <Entry Placeholder="Grado" Text="{Binding Grado}"/>
+            <Entry Placeholder="Seccion" Text="{Binding Seccion}"/>
+            <Button Text="Save" Command="{Binding InsertCommand}"/>
+            <!--<Button Text="ShowByText" Command="{Binding SearchCommand}" />-->
+            <ListView x:Name="lvPeople" ItemsSource="{Binding Estudiantes}" BackgroundColor="{Binding Color}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Nombre}"></Label>
+                                <Label Text="{Binding Apellido}"></Label>
+                                <Label Text="{Binding Grado}"></Label>
+                                <Label Text="{Binding Seccion}"></Label>
+                                <Button Text="Edit" Command="{Binding BindingContext.SelectOneCommand, Source={x:Reference viewStackLayout}}" CommandParameter="{Binding EstudianteId}"/>
+
+                                <Button Text="X" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference viewStackLayout}}" CommandParameter="{Binding EstudianteId}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

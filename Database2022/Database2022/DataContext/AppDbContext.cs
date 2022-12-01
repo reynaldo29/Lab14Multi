@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Database2022.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,8 +14,8 @@ namespace Database2022
 
         //Tablas de base de datos
         public DbSet<Person> People { get; set; }
-        
 
+        public DbSet<Estudiante> Estudiante { get; set; }
 
         //Estándar del desarrollo con EFC
         public AppDbContext(string dbPath)
