@@ -4,25 +4,32 @@
              x:Class="Database2022.Views.EstudianteView">
     <ContentPage.Content>
         <StackLayout x:Name="viewStackLayout">
-
+            <Label Text="Estudiantes" Padding="4" HorizontalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold"/>
             <Entry Placeholder="Nombre" Text="{Binding Nombre}" />
             <Entry Placeholder="Apellido" Text="{Binding Apellido}"/>
             <Entry Placeholder="Grado" Text="{Binding Grado}"/>
             <Entry Placeholder="Seccion" Text="{Binding Seccion}"/>
-            <Button Text="Save" Command="{Binding InsertCommand}"/>
-            <!--<Button Text="ShowByText" Command="{Binding SearchCommand}" />-->
-            <ListView x:Name="lvPeople" ItemsSource="{Binding Estudiantes}" BackgroundColor="{Binding Color}" >
+            <Button Text="Save" Command="{Binding InsertCommand}" BackgroundColor="SkyBlue"/>
+            
+            <ListView x:Name="lvEstudiante" ItemsSource="{Binding Estudiantes}" BackgroundColor="{Binding Color}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Nombre}"></Label>
-                                <Label Text="{Binding Apellido}"></Label>
-                                <Label Text="{Binding Grado}"></Label>
-                                <Label Text="{Binding Seccion}"></Label>
-                                <Button Text="Edit" Command="{Binding BindingContext.SelectOneCommand, Source={x:Reference viewStackLayout}}" CommandParameter="{Binding EstudianteId}"/>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="4">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" WidthRequest="200">
+                                    <Label Text="{Binding Nombre}"></Label>
+                                    <Label Text="{Binding Apellido}"></Label>
+                                    <Label Text="{Binding Grado}"></Label>
+                                    <Label Text="{Binding Seccion}"></Label>
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                                    <Button Text="Edit" Command="{Binding BindingContext.SelectOneCommand, Source={x:Reference viewStackLayout}}" CommandParameter="{Binding EstudianteId}" 
+                                        BackgroundColor="ForestGreen"/>
 
-                                <Button Text="X" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference viewStackLayout}}" CommandParameter="{Binding EstudianteId}"/>
+                                    <Button Text="X" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference viewStackLayout}}" CommandParameter="{Binding EstudianteId}"
+                                        BackgroundColor="Salmon"/>
+                                </StackLayout>
+                                
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

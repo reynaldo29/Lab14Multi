@@ -68,7 +68,7 @@ namespace Database2022.ViewModels
         public ViewModelEstudiante()
         {
             EstudianteService service = new EstudianteService();
-            service.Get();
+            Estudiantes = service.Get();
 
             InsertCommand = new Command(() =>
             {
